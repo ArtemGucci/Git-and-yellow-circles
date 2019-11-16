@@ -1,7 +1,6 @@
 import sys
-from PyQt5.QtWidgets import QMainWindow, QApplication
+from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton
 from PyQt5.QtGui import QPainter, QColor
-from PyQt5 import uic
 from random import randint
 
 
@@ -10,10 +9,16 @@ class Draw(QMainWindow):
     def __init__(self):
 
         super().__init__()
-        uic.loadUi('ui_file.ui', self)
+        self.loadUI()
 
         self.clicked = False
         self.draw.clicked.connect(self.run)
+
+    def loadUI(self):
+        self.setGeometry(400, 400, 400, 400)
+        self.draw = QPushButton('Рисовать', self)
+        self.draw.resize(self.draw.sizeHint())
+        self.draw.move(160, 20)
 
     def run(self):
         self.clicked = True
@@ -29,19 +34,28 @@ class Draw(QMainWindow):
     def drawBrushes(self, qp):
 
         if self.clicked:
-            qp.setBrush(QColor('yellow'))
+            r = randint(0, 255)
+            g = randint(0, 255)
+            b = randint(0, 255)
+            qp.setBrush(QColor(r, g, b))
             k = randint(5, 200)
             x = randint(5, 250)
             y = randint(5, 250)
             qp.drawEllipse(x, y, k, k)
 
-            qp.setBrush(QColor('yellow'))
+            r = randint(0, 255)
+            g = randint(0, 255)
+            b = randint(0, 255)
+            qp.setBrush(QColor(r, g, b))
             k = randint(5, 200)
             x = randint(5, 250)
             y = randint(5, 250)
             qp.drawEllipse(x, y, k, k)
 
-            qp.setBrush(QColor('yellow'))
+            r = randint(0, 255)
+            g = randint(0, 255)
+            b = randint(0, 255)
+            qp.setBrush(QColor(r, g, b))
             k = randint(5, 200)
             x = randint(5, 250)
             y = randint(5, 250)
