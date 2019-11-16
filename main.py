@@ -2,23 +2,18 @@ import sys
 from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton
 from PyQt5.QtGui import QPainter, QColor
 from random import randint
+from ui_file import Ui_MainWindow
 
 
-class Draw(QMainWindow):
+class Draw(QMainWindow, Ui_MainWindow):
 
     def __init__(self):
 
         super().__init__()
-        self.loadUI()
+        self.setupUi(self)
 
         self.clicked = False
         self.draw.clicked.connect(self.run)
-
-    def loadUI(self):
-        self.setGeometry(400, 400, 400, 400)
-        self.draw = QPushButton('Рисовать', self)
-        self.draw.resize(self.draw.sizeHint())
-        self.draw.move(160, 20)
 
     def run(self):
         self.clicked = True
